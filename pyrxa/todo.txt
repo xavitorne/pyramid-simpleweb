@@ -1,0 +1,5 @@
+Doing this:
+http://pyramid-blogr.readthedocs.org/en/latest/routes.html
+
+TODO:
+https://github.com/Pylons/pyramid_blogr
