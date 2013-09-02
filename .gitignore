@@ -23,3 +23,5 @@ jyenv/
 pypyenv/
 env*/
 venv/
+emacs.desktop
+pyrxa/emacs.desktop
