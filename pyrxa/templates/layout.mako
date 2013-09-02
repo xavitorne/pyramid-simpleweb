@@ -6,7 +6,7 @@
   <meta name="keywords" content="python web application" />
   <meta name="description" content="pyramid web application" />
   <link rel="shortcut icon" href="${request.static_url('pyrxa:static/favicon.ico')}" />
-  <link rel="stylesheet" href="${request.static_url('pyrxa:static/pylons.css')}" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="${request.static_url('pyrxa:static/style.css')}" type="text/css" media="screen" charset="utf-8" />
   <link rel="stylesheet" href="http://static.pylonsproject.org/fonts/nobile/stylesheet.css" media="screen" />
   <link rel="stylesheet" href="http://static.pylonsproject.org/fonts/neuton/stylesheet.css" media="screen" />
   <!--[if lte IE 6]>
@@ -18,7 +18,7 @@
 <div id="wrap">
     <div id="top">
       <div class="top align-center">
-        <div><img src="${request.static_url('pyrxa:static/pyramid.png')}" width="750" height="169" alt="pyramid"/></div>
+        <div>arg</div>
       </div>
     </div>
     <div id="bottom" style="padding-bottom:50px;">
