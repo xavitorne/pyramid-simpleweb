@@ -1,7 +1,7 @@
 from pyramid.response import Response
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPNotFound, HTTPFound
-
+from pyramid.security import remember, forget
 from sqlalchemy.exc import DBAPIError
 
 from .models import (
@@ -29,7 +29,7 @@ def blog_view(request):
 
 
 @view_config(route_name='blog_action', match_param='action=edit',
-             renderer='pyrxa:templates/edit_blog.mako')
+             renderer='pyrxa:templates/edit_blog.mako', permission='edit')
 def blog_update(request):
     id = int(request.params.get('id', -1))
     entry = Entry.by_id(id)
@@ -44,7 +44,8 @@ def blog_update(request):
 
 
 @view_config(route_name='blog_action', match_param='action=create',
-             renderer='pyrxa:templates/edit_blog.mako')
+             renderer='pyrxa:templates/edit_blog.mako',
+             permission='create')
 def blog_create(request):
     entry = Entry()
     form = BlogCreateForm(request.POST)
