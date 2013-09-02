@@ -25,7 +25,8 @@ def main(global_config, **settings):
         )
     config.add_static_view('static', 'static', cache_max_age=3600)
     config.add_route('home', '/')
-    config.add_route('blog', '/blog/{id:\d+}/{slug}')
+    config.add_route('blog', '/blog')
+    config.add_route('blog_page', '/blog/{id:\d+}/{slug}')
     config.add_route('blog_action', '/blog/{action}',
                      factory='pyrxa.security.EntryFactory')
     config.add_route('auth', '/sign/{action}')

@@ -12,6 +12,12 @@ from .models import (
 from .forms import BlogCreateForm, BlogUpdateForm
 
 
+@view_config(route_name='blog', renderer='pyrxa:templates/blog.mako')
+def blog_page(request):
+    page = int(request.params.get('page', 1))
+    paginator = Entry.get_paginator(request, page)
+    return {'paginator':paginator}
+
 @view_config(route_name='home', renderer='pyrxa:templates/index.mako')
 def index_page(request):
     page = int(request.params.get('page', 1))
@@ -19,7 +25,7 @@ def index_page(request):
     return {'paginator':paginator}
 
 
-@view_config(route_name='blog', renderer='pyrxa:templates/view_blog.mako')
+@view_config(route_name='blog_page', renderer='pyrxa:templates/view_blog.mako')
 def blog_view(request):
     id = int(request.matchdict.get('id', -1))
     entry = Entry.by_id(id)
