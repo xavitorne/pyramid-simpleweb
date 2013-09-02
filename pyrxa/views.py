@@ -60,8 +60,17 @@ def blog_create(request):
              request_method='POST')
 @view_config(route_name='auth', match_param='action=out', renderer='string')
 def sign_in_out(request):
-    return {}
-
+    username = request.POST.get('username')
+    if username:
+        user = User.by_name(username)
+        if user and user.verify_password(request.POST.get('password')):
+            headers = remember(request, user.name)
+        else:
+            headers = forget(request)
+    else:
+        headers = forget(request)
+    return HTTPFound(location=request.route_url('home'),
+                     headers=headers)
 
 
 conn_err_msg = """\
