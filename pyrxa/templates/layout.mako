@@ -18,7 +18,7 @@
 <div id="wrap">
     <div id="top">
       <div class="top align-center">
-        <div>arg</div>
+        <div>My web</div>
       </div>
     </div>
     <div id="bottom" style="padding-bottom:50px;">
