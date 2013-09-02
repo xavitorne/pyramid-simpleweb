@@ -25,7 +25,7 @@ user_id = authenticated_userid(request)
     <ul>
     % for entry in paginator.items:
     <li>
-    <a href="${request.route_url('blog', id=entry.id, slug=entry.slug)}">
+    <a href="${request.route_url('blog_page', id=entry.id, slug=entry.slug)}">
     ${entry.title}</a>
     </li>
     % endfor
