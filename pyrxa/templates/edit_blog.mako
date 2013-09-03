@@ -1,5 +1,5 @@
 <%inherit file="pyrxa:templates/layout.mako"/>
-
+<p><a href="${request.route_url('admin')}">Admin Main Page</a></p>
 <form action="${request.route_url('blog_action',action=action)}" method="post">
 %if action =='edit':
 ${form.id()}
@@ -18,7 +18,7 @@ ${form.id()}
 <div><label>${form.body.label}</label>${form.body()}</div>
 <div><input type="submit" value="Submit"></div>
 </form>
-<p><a href="${request.route_url('home')}">Go Back</a></p>
+
 
 <style type="text/css">
 form{
