@@ -18,6 +18,14 @@ def blog_page(request):
     paginator = Entry.get_paginator(request, page)
     return {'paginator':paginator}
 
+
+@view_config(route_name='admin', renderer='pyrxa:templates/admin.mako')
+def admin_page(request):
+    page = int(request.params.get('page', 1))
+    paginator = Entry.get_paginator(request, page)
+    return {'paginator':paginator}
+
+
 @view_config(route_name='home', renderer='pyrxa:templates/index.mako')
 def index_page(request):
     page = int(request.params.get('page', 1))
@@ -58,7 +66,7 @@ def blog_create(request):
     if request.method == 'POST' and form.validate():
         form.populate_obj(entry)
         DBSession.add(entry)
-        return HTTPFound(location=request.route_url('home'))
+        return HTTPFound(location=request.route_url('admin'))
     return {'form':form, 'action':request.matchdict.get('action')}
 
 
@@ -75,7 +83,7 @@ def sign_in_out(request):
             headers = forget(request)
     else:
         headers = forget(request)
-    return HTTPFound(location=request.route_url('home'),
+    return HTTPFound(location=request.route_url('admin'),
                      headers=headers)
 
 
