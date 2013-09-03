@@ -4,11 +4,20 @@ pyrxa README
 Getting Started
 ---------------
 
+- virtualenv .
+
+- . bin/activate
+
 - cd <directory containing this file>
 
-- $venv/bin/python setup.py develop
+- ../bin/python setup.py develop
 
-- $venv/bin/initialize_pyrxa_db development.ini
+- ../bin/initialize_pyrxa_db development.ini
 
-- $venv/bin/pserve development.ini
+- ../bin/pserve development.ini
 
+
+TODO
+----
+
+- Add hashed password
