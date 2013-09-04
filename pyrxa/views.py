@@ -7,6 +7,7 @@ from sqlalchemy.exc import DBAPIError
 from .models import (
     DBSession,
     Entry,
+    MainPage,
     User,
     )
 from .forms import BlogCreateForm, BlogUpdateForm
@@ -19,6 +20,14 @@ def blog_page(request):
     return {'paginator':paginator}
 
 
+
+# @view_config(route_name='view_page', renderer='pyrxa:templates/index.mako')
+# def view_page(request):
+#     mainpage = int(request.params.get('mainpage', 1))
+#     mp = MainPage.by_id(mainpage)
+#     return {'mainpage': mp}
+
+
 @view_config(route_name='admin', renderer='pyrxa:templates/admin.mako')
 def admin_page(request):
     page = int(request.params.get('page', 1))
@@ -28,9 +37,8 @@ def admin_page(request):
 
 @view_config(route_name='home', renderer='pyrxa:templates/index.mako')
 def index_page(request):
-    page = int(request.params.get('page', 1))
-    paginator = Entry.get_paginator(request, page)
-    return {'paginator':paginator}
+    mainpage = MainPage.all()
+    return {'mainpage':mainpage}
 
 
 @view_config(route_name='blog_page', renderer='pyrxa:templates/view_blog.mako')
@@ -66,6 +74,34 @@ def blog_create(request):
     if request.method == 'POST' and form.validate():
         form.populate_obj(entry)
         DBSession.add(entry)
+        return HTTPFound(location=request.route_url('admin'))
+    return {'form':form, 'action':request.matchdict.get('action')}
+
+
+@view_config(route_name='page_action', match_param='action=edit',
+             renderer='pyrxa:templates/edit_page.mako', permission='edit')
+def page_update(request):
+    id = int(request.params.get('id', -1))
+    mp = MainPage.by_id(id)
+    if not mp:
+        return HTTPNotFound()
+    form = BlogUpdateForm(request.POST, mp)
+    if request.method == 'POST' and form.validate():
+        form.populate_obj(mp)
+        return HTTPFound(location=request.route_url('blog', id=mp.id,
+                                                    slug=mp.slug))
+    return {'form':form, 'action':request.matchdict.get('action')}
+
+
+@view_config(route_name='page_action', match_param='action=create',
+             renderer='pyrxa:templates/edit_page.mako',
+             permission='create')
+def page_create(request):
+    mp = MainPage()
+    form = BlogCreateForm(request.POST)
+    if request.method == 'POST' and form.validate():
+        form.populate_obj(mp)
+        DBSession.add(mp)
         return HTTPFound(location=request.route_url('admin'))
     return {'form':form, 'action':request.matchdict.get('action')}
 
