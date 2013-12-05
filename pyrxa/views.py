@@ -30,9 +30,13 @@ def blog_page(request):
 
 @view_config(route_name='admin', renderer='pyrxa:templates/admin.mako')
 def admin_page(request):
+    page = int(request.params.get('page_blog', 1))
+    paginator_blog = Entry.get_paginator(request, page)
+
     page = int(request.params.get('page', 1))
-    paginator = Entry.get_paginator(request, page)
-    return {'paginator':paginator}
+    paginator_pages = MainPage.get_paginator(request, page)
+
+    return {'paginator_pages':paginator_pages, 'paginator_blog': paginator_blog}
 
 
 @view_config(route_name='home', renderer='pyrxa:templates/index.mako')
