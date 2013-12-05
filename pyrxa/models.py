@@ -85,11 +85,11 @@ class MainPage(Base):
 
     @classmethod
     def all(cls):
-        return DBSession.query(Entry).order_by(sa.desc(Entry.created))
+        return DBSession.query(MainPage).order_by(sa.desc(MainPage.created))
 
     @classmethod
     def by_id(cls, id):
-        return DBSession.query(Entry).filter(Entry.id == id).first()
+        return DBSession.query(MainPage).filter(MainPage.id == id).first()
 
     @property
     def slug(self):
@@ -102,4 +102,4 @@ class MainPage(Base):
     @classmethod
     def get_paginator(cls, request, page=1):
         page_url = PageURL_WebOb(request)
-        return Page(Entry.all(), page, url=page_url, items_per_page=5)
+        return Page(MainPage.all(), page, url=page_url, items_per_page=5)
