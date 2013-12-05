@@ -41,7 +41,7 @@ def index_page(request):
     return {'mainpage':mainpage}
 
 
-@view_config(route_name='blog_page', renderer='pyrxa:templates/view_blog.mako')
+@view_config(route_name='view_blog', renderer='pyrxa:templates/view_blog.mako')
 def blog_view(request):
     id = int(request.matchdict.get('id', -1))
     entry = Entry.by_id(id)

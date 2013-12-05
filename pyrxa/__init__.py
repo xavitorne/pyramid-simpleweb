@@ -29,10 +29,11 @@ def main(global_config, **settings):
     config.add_route('admin', '/admin')
 
     config.add_route('blog', '/blog')
-    config.add_route('blog_page', '/blog/{id:\d+}/{slug}')
+    config.add_route('view_blog', '/blog/{id:\d+}/{slug}')
     config.add_route('blog_action', '/blog/{action}',
                      factory='pyrxa.security.EntryFactory')
 
+    config.add_route('view_page', '/page/{id:\d+}/{slug}')
     config.add_route('page_action', '/page/{action}',
                      factory='pyrxa.security.EntryFactory')
 
