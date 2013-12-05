@@ -33,7 +33,7 @@ def main(global_config, **settings):
     config.add_route('blog_action', '/blog/{action}',
                      factory='pyrxa.security.EntryFactory')
 
-    config.add_route('page_action', '/blog/{action}',
+    config.add_route('page_action', '/page/{action}',
                      factory='pyrxa.security.EntryFactory')
 
     config.add_route('auth', '/sign/{action}')
