@@ -78,6 +78,14 @@ def blog_create(request):
     return {'form':form, 'action':request.matchdict.get('action')}
 
 
+@view_config(route_name='view_page', renderer='pyrxa:templates/view_blog.mako')
+def page_view(request):
+    id = int(request.matchdict.get('id', -1))
+    entry = Entry.by_id(id)
+    if not entry:
+        return HTTPNotFound()
+    return {'entry':entry}
+
 @view_config(route_name='page_action', match_param='action=edit',
              renderer='pyrxa:templates/edit_page.mako', permission='edit')
 def page_update(request):
