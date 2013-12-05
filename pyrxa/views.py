@@ -85,7 +85,7 @@ def blog_create(request):
 @view_config(route_name='view_page', renderer='pyrxa:templates/view_blog.mako')
 def page_view(request):
     id = int(request.matchdict.get('id', -1))
-    entry = Entry.by_id(id)
+    entry = MainPage.by_id(id)
     if not entry:
         return HTTPNotFound()
     return {'entry':entry}
