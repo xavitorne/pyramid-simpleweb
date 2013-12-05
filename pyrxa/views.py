@@ -88,7 +88,7 @@ def page_update(request):
     form = BlogUpdateForm(request.POST, mp)
     if request.method == 'POST' and form.validate():
         form.populate_obj(mp)
-        return HTTPFound(location=request.route_url('blog', id=mp.id,
+        return HTTPFound(location=request.route_url('admin', id=mp.id,
                                                     slug=mp.slug))
     return {'form':form, 'action':request.matchdict.get('action')}
 
