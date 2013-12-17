@@ -26,3 +26,4 @@ venv/
 emacs.desktop
 pyrxa/emacs.desktop
 pyrxa.sqlite
+sqlite3
