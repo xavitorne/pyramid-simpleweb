@@ -1,7 +1,7 @@
 pyrxa README
 ==================
 
-Simple cms for personal use.
+The idea is to create a simple cms for personal use.
 
 
 Getting Started
