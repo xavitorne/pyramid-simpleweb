@@ -1,6 +1,9 @@
 pyrxa README
 ==================
 
+Simple cms for personal use.
+
+
 Getting Started
 ---------------
 
@@ -21,3 +24,4 @@ TODO
 ----
 
 - Add hashed password
+- Add wysiwyg editor
